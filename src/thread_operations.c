@@ -15,3 +15,15 @@ bool side_thread_function(int *counter, SemaphoreHandle_t semaphore)
    
     return semaphore_pass;
 }
+
+bool main_thread_function(int *counter, int *on, SemaphoreHandle_t semaphore)
+{
+    bool semaphore_pass = xSemaphoreTake(semaphore, 500);
+    if (semaphore_pass)
+    {
+        printf("hello world from %s! Count %d\n", "main", (*counter)++);
+        xSemaphoreGive(semaphore);
+        *on = !(*on);
+    }
+    return semaphore_pass;
+}

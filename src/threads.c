@@ -21,7 +21,7 @@ int on;
 void side_thread(void *params)
 {
 	while (1) {
-        vTaskDelay(1000);
+        vTaskDelay(1000); // change back to 100
         side_thread_function(&counter, semaphore);
 	}
 }
@@ -30,13 +30,8 @@ void main_thread(void *params)
 {
 	while (1) {
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, on);
-        vTaskDelay(1000);
-        while(!xSemaphoreTake(semaphore, 500));
-        {
-		    printf("hello world from %s! Count %d\n", "main", counter++);
-        }
-        xSemaphoreGive(semaphore);
-        on = !on;
+        vTaskDelay(1000); // change back to 100
+        main_thread_function(&counter, &on, semaphore);
 	}
 }
 
