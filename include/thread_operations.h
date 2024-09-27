@@ -14,8 +14,10 @@ bool side_thread_function(int *counter, SemaphoreHandle_t semaphore);
 
 bool main_thread_function(int *counter, int *on, SemaphoreHandle_t semaphore);
 
-void thread_a_function(void *params);
+void thread_deadlock_function(void *params);
 
-void thread_b_function(void *params);
+bool orphaned_lock(int *counter, SemaphoreHandle_t semaphore);
+
+bool not_orphaned_lock(int *counter, SemaphoreHandle_t semaphore);
 
 #endif
