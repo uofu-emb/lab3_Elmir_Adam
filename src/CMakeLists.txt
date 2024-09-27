@@ -2,6 +2,7 @@
 add_executable(threads
     threads.c
     thread_operations.c
+    #deadlock_test.c
     )
 
 pico_set_program_name(threads "test")
